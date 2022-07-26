@@ -14,12 +14,18 @@ let timer;
 let deleteFirst;
 //MODERN WAY
 async function start() {
-  const response = await fetch("https://dog.ceo/api/breeds/list/all");
-  //code below will not run until await is completed
-  const data = await response.json();
-  //json data of the response, parsed
 
-  createBreedList(data.message);
+  try{
+    const response = await fetch("https://dog.ceo/api/breeds/list/all");
+    //code below will not run until await is completed
+    const data = await response.json();
+    //json data of the response, parsed
+
+    createBreedList(data.message);
+  }catch(e) {
+    console.log("Error, problem fetching breed list.");
+  }
+
 }
 
 start();
